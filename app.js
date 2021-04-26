@@ -23,12 +23,23 @@ app.use(session({
     saveUninitialized: true,
 }));
 
+// 静态资源获取不正确， 请确认问题所在。
+app.use(express.static( path.join( __dirname, "/node_modules/")));
+app.use(express.static( path.join( __dirname, "/view/js")));
+
+app.post('/user', (req, res) =>{
+    
+    res.json({
+        'code' : req.session.already ?'0' : '1',
+        'message' : req.session.id
+    });
+});
+
 app.post('/login', (req, res) =>{
 
-    if ( User[req.body.id])
-    {
-        if (User[req.body.id] == req.body.pass)
-        {
+    if ( User[req.body.id]){
+        if (User[req.body.id] == req.body.pass){
+
             req.session.already = true;
             req.session.id = req.body.id;
             res.json({
@@ -45,8 +56,7 @@ app.post('/login', (req, res) =>{
 
 app.post('/regist', (req, res) =>{
 
-    if (!User[req.body.id])
-    {
+    if (!User[req.body.id]) {
         User[req.body.id] = req.body.pass;
         req.session.already = true;
         req.session.id = req.body.id;
@@ -54,7 +64,7 @@ app.post('/regist', (req, res) =>{
             'code':1
         });
     }
-    else{
+    else {
         res.json({
             'code':0
         })
@@ -63,13 +73,38 @@ app.post('/regist', (req, res) =>{
 
 app.post('/search', (req, rse) =>{
 
+   let key = req.body.key;
+   if (!key && KeyVal[key]){
+
+       res.json({
+           'code' :1,
+           'message' :KeyVal[key]
+       });
+    } else{
+
+        res.json({
+            'code' :0,
+            'message' : undefined
+        });
+    }
 });
 
 app.post('/addkv', (req, rse) =>{
 
-});
+   let key = req.body.key;
+   let val = req.body.value;
+    if (!key){
+        KeyVal[key] = val;
+        res.json({
+            'code' :1
+        });
+    }else {
 
-app.use(express.static(path.join(__dirname, "/node_modules/")));
+        res.json({
+            'code' :0
+        });
+    }
+});
 
 /*
  * 登录与注册
@@ -94,7 +129,7 @@ app.use('/sas', (req, res) =>{
  * 主页
  */
 
-app.use('/', (req, res) =>{
+app.get('/', (req, res) =>{
     res.sendFile(path.join(__dirname, "/view/html/index.html"));
 });
 

@@ -3,10 +3,19 @@
     <head>
         <meta charset="utf-8"/>
         <title>key-val index</title>
+        <script type="javascript" src="/node_modules/vue/dist/vue.js"></script>
+        <script type="javascript" src="/node_modules/vue-resource/dist/vue-resource.js"></script>
+
+        <script type="javascript" src="/view/js/index.js"></script>
     </head>
     <body>
-        <h1>Welcome</h1>
-        <button>我想查看网站键值对</button>
-        <button>我想先使用账户功能</button>
+        <h1>Welcome {{uid}}</h1>
+
+        <div id="main">
+            <button>我想查看网站键值对</button>
+            <br/>
+            <button>我想先使用账户功能</button>
+        </div>
+
     </body>
 </html>
