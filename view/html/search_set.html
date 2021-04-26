@@ -3,24 +3,44 @@
     <head>
         <meta charset="utf-8"/>
         <title>Key-Valye</title>
+
+        <script type="text/javascript" src="/node_modules/vue/dist/vue.js"></script>
+        <script type="text/javascript" src="/node_modules/vue-resource/dist/vue-resource.js"></script>
+
+        <script type="text/javascript" src="/js/search_set.js"></script>
     </head>
     <body>
         <h1>Search</h1>
         <div id="main">
-            <p>查找</p>
-            <label>键</label>
-            <input type="text" name="key"/>
-            <button>查找</button>
+            <template v-if="isSearch">
+                <p>查找</p>
+                <label>键</label>
+                <input type="text" v-model="searchKey"/>
+                <button @click="search()">查找</button>
+                <br/>
+                ANS: {{searchValAns}}
+                <br/>
+                <button @click="changePlan()">前往添加</button>
+            </template>
+            <template v-else>
+                <p>添加</p>
+                <label>键</label>
+                <input type="text" v-model="key"/>
+                <br/>
+                <label>值</label>
+                <input type="text" v-model="value"/>
+                <button @click="setKeyVal()">添加</button>
+                <br/>
+                <br/>
+                <button @click="changePlan()">前往查找</button>
+            </template>
 
-            <br/><hr/>
+            <br/>
+            {{errMessage}}
+            <br/>
+            <button @click='toIndex()'>返回主页</button>
 
-            <p>添加</p>
-            <label>键</label>
-            <input type="text" name="key"/>
-            <label>值</label>
-            <input type="text" name="value"/>
-            <button>添加</button>
+        </div>
 
-            </div>
     </body>
 </html>

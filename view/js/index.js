@@ -1,22 +1,31 @@
-window.onload = () =>{
-    console.log('there')
+window.onload = function() {
+
     let main =  new Vue({
         el:"#main",
         data :{
             name:undefined
         },
         methods :{
-            getName(){
-                const that = this;
-                this.$http.post("/user")
-                    .then((res) =>{
-                        that.name = res.message;
-                        console.log(that.name)
-                    });
+            toIndex() {
+                window.location.href = '/';
+            },
+            toKeyVal() {
+                window.location.href = '/sas';
+            },
+            toLogin() {
+                window.location.href = '/lar';
             }
         },
-        activated: ()=>{
-            this.getName();
+        created (){
+            const that = this;
+            this.$http.post("/user")
+                .then((req) =>{
+
+                    if (req.body.message)
+                        that.name = req.body.message;
+                    else
+                        that.name = '无名';
+                });
         }
     });
 }
