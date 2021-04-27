@@ -26,6 +26,7 @@ app.use(session({
 // 静态资源获取不正确， 请确认问题所在。
 app.use('/node_modules/', express.static( path.join( __dirname, "/node_modules/")));
 app.use('/js/', express.static( path.join( __dirname, "/view/js")));
+app.use('/css/', express.static( path.join( __dirname, "/view/css")));
 
 app.post('/user', (req, res) =>{
     
