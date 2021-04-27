@@ -8,7 +8,7 @@
         <script type="text/javascript" src="/node_modules/vue/dist/vue.js"></script>
         <script type="text/javascript" src="/node_modules/vue-resource/dist/vue-resource.js"></script>
 
-        <script type="text/javascript" src="/js/search_set.js"></script>
+        <script type="text/javascript" src="/js5/search_set.js"></script>
     </head>
     <body>
         <div class="allBox">
@@ -19,8 +19,8 @@
                     <div id="main">
                         <template v-if="isSearch">
                             <p>查找</p>
-                            <label>键</label>
-                            <input type="text" v-model="searchKey"/>
+                            <label for="searchKey">键</label>
+                            <input type="text" v-model="searchKey" name="searchKey"/>
                             <button @click="search()">查找</button>
                             <br/>
                             ANS: {{searchValAns}}
@@ -29,13 +29,17 @@
                         </template>
                         <template v-else>
                             <p>添加</p>
-                            <label>键</label>
-                            <input type="text" v-model="key"/>
+                            <div>
+                                <label for="key">键</label>
+                                <input type="text" v-model="key" name="key"/>
+                            </div>
                             <br/>
-                            <label>值</label>
-                            <input type="text" v-model="value"/>
+                            <div>
+                                <label for="value">值</label>
+                                <input type="text" v-model="value" name="value"/>
+                            </div>
+                            <br/>
                             <button @click="setKeyVal()">添加</button>
-                            <br/>
                             <br/>
                             <button @click="changePlan()">前往查找</button>
                         </template>
@@ -45,6 +49,7 @@
                         <br/>
                         <button @click='toIndex()'>返回主页</button>
 
+                        <br/>
                     </div>
                         <div class="right"></div>
                     </div>

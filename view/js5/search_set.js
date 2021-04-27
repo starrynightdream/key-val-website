@@ -1,17 +1,17 @@
-window.onload = function() {
+window.onload = function () {
 
-    let main =  new Vue({
-        el:"#main",
-        data :{
-            name:undefined,
+    let main = new Vue({
+        el: "#main",
+        data: {
+            name: undefined,
             searchKey: "",
             searchValAns: "",
-            key:"",
-            value:"",
-            isSearch : true,
+            key: "",
+            value: "",
+            isSearch: true,
             errMessage: ""
         },
-        methods :{
+        methods: {
             toIndex() {
                 window.location.href = '/';
             },
@@ -22,19 +22,19 @@ window.onload = function() {
                 window.location.href = '/lar';
             },
 
-            search () {
+            search() {
 
-                if (this.searchKey){
+                if (this.searchKey) {
                     this.errMessage = "";
                     const that = this;
                     this.$http.post("/search", {
-                        'key' : this.searchKey
-                    }).then((req) =>{
+                        'key': this.searchKey
+                    }).then(req => {
 
-                        console.log(req.body)
-                        if (req.body.code == 1){
+                        console.log(req.body);
+                        if (req.body.code == 1) {
                             that.searchValAns = req.body.message;
-                        }else {
+                        } else {
                             that.errMessage = "查找失败，该键对应值可能不存在";
                         }
                     });
@@ -44,17 +44,17 @@ window.onload = function() {
             },
             setKeyVal() {
 
-                if (this.key && this.value){
+                if (this.key && this.value) {
                     this.errMessage = "";
                     const that = this;
                     this.$http.post("/addkv", {
-                        'key' : this.key,
-                        'value' :this.value
-                    }).then((req) =>{
+                        'key': this.key,
+                        'value': this.value
+                    }).then(req => {
 
-                        if (req.body.code == 1){
-                            that.errMessage = '设定键值成功'
-                        }else {
+                        if (req.body.code == 1) {
+                            that.errMessage = '设定键值成功';
+                        } else {
                             that.errMessage = "插入失败";
                         }
                     });
@@ -63,22 +63,18 @@ window.onload = function() {
                 }
             },
 
-            changePlan (){
+            changePlan() {
                 this.isSearch = !this.isSearch;
                 this.errMessage = "";
-            },
+            }
         },
-        created (){
+        created() {
 
             const that = this;
-            this.$http.post("/user")
-                .then((req) =>{
+            this.$http.post("/user").then(req => {
 
-                    if (req.body.message)
-                        that.name = req.body.message;
-                    else
-                        that.name = '无名';
-                });
+                if (req.body.message) that.name = req.body.message;else that.name = '无名';
+            });
         }
     });
-}
+};
