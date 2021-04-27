@@ -21,7 +21,9 @@
 .allBox .center .left {
     width: 20vw;
 }
-
+.allBox .center .right{
+    width: 20vw;
+}
 #main {
     border: 2px solid;
     width: 60vw;

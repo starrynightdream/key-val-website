@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8"/>
         <title>waiting......</title>
+        <link rel="stylesheet" type="text/css" href="/css/global.css" media="screen"/>
 
         <script type="text/javascript" src="/node_modules/vue/dist/vue.js"></script>
         <script type="text/javascript" src="/node_modules/vue-resource/dist/vue-resource.js"></script>
@@ -10,33 +11,44 @@
         <script type="text/javascript" src="/js/login_regist.js"></script>
     </head>
     <body>
-        <h1>Ready</h1>
+        <div class="allBox">
+           <div class="top"></div>
 
-        <div id="main">
-            <label>ID: </label>
-            <input type="text" v-model="id"/>
-            <br/>
-            <label>PASS: </label>
-            <input type="text" v-model="pass"/>
-            <br/>
+           <div class="center">
+               <div class="left"></div>
+                <div id="main">
+                    <label>ID: </label>
+                    <input type="text" v-model="id"/>
+                    <br/>
+                    <label>PASS: </label>
+                    <input type="text" v-model="pass"/>
+                    <br/>
 
-            <template v-if="!isLogin">
-                <label>Re_input_PASS: </label>
-                <input type="text" v-model="rePass"/>
-                <br/>
-                <button @click="regist()">注册</button>
-                <button @click="changePlan()">switch</button>
-            </template>
-            <template v-else>
-                <button @click="login()">登录</button>
-                <button @click="changePlan()">switch</button>
-            </template>
+                    <template v-if="!isLogin">
+                        <label>Re_input_PASS: </label>
+                        <input type="text" v-model="rePass"/>
+                        <br/>
+                        <button @click="regist()">注册</button>
+                        <button @click="changePlan()">switch</button>
+                    </template>
+                    <template v-else>
+                        <button @click="login()">登录</button>
+                        <button @click="changePlan()">switch</button>
+                    </template>
 
-            <br/>
-            {{errMessage}}
-            <br/>
-            <button @click='toIndex()'>返回主页</button>
-        </div>
+                    <br/>
+                    {{errMessage}}
+                    <br/>
+                    <button @click='toIndex()'>返回主页</button>
+                </div>
 
+
+               <div class="right"></div>
+           </div>
+
+           <div class="bottom"></div>
+       </div> 
+
+        
     </body>
 </html>

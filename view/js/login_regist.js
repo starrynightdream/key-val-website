@@ -24,8 +24,8 @@ window.onload = function() {
 
             regist() {
 
-                if (this.rePass !== this.pass) {
-                    this.errMessage = "1"
+                if (!(this.pass && this.rePass && this.id) || this.rePass !== this.pass) {
+                    this.errMessage = "请填写完整"
                     return;
                 }
                 this.errMessage = "";
