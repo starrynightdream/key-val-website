@@ -23,7 +23,6 @@ app.use(session({
     saveUninitialized: true,
 }));
 
-// 静态资源获取不正确， 请确认问题所在。
 app.use('/node_modules/', express.static( path.join( __dirname, "/node_modules/")));
 app.use('/js/', express.static( path.join( __dirname, "/view/js")));
 app.use('/js5/', express.static( path.join( __dirname, "/view/js5")));
@@ -112,7 +111,7 @@ app.post('/addkv', (req, res) =>{
  */
 app.use('/lar', (req, res) =>{
     res.sendFile(
-        path.join(__dirname, "/view/html/login_regist.html")
+        path.join(__dirname, "/view/html/login_regist_jq.html")
     );
 });
 
@@ -122,7 +121,7 @@ app.use('/lar', (req, res) =>{
  */
 app.use('/sas', (req, res) =>{
     res.sendFile(
-        path.join(__dirname, "/view/html/search_set.html")
+        path.join(__dirname, "/view/html/search_set_jq.html")
     );
 });
 
@@ -135,7 +134,8 @@ app.get('/favicon.ico', (req, res) =>{
  * 主页
  */
 app.get('/', (req, res) =>{
-    res.sendFile(path.join(__dirname, "/view/html/index.html"));
+    // res.sendFile(path.join(__dirname, "/view/html/index.html"));
+    res.sendFile(path.join(__dirname, "/view/html/index_jq.html"));
 });
 
 app.listen(port, ()=>{
