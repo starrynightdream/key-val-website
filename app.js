@@ -111,7 +111,7 @@ app.post('/addkv', (req, res) =>{
  */
 app.use('/lar', (req, res) =>{
     res.sendFile(
-        path.join(__dirname, "/view/html/login_regist_jq.html")
+        path.join(__dirname, "/view/html/login_regist_nothing.html")
     );
 });
 
@@ -121,7 +121,7 @@ app.use('/lar', (req, res) =>{
  */
 app.use('/sas', (req, res) =>{
     res.sendFile(
-        path.join(__dirname, "/view/html/search_set_jq.html")
+        path.join(__dirname, "/view/html/search_set_nothing.html")
     );
 });
 
@@ -135,7 +135,7 @@ app.get('/favicon.ico', (req, res) =>{
  */
 app.get('/', (req, res) =>{
     // res.sendFile(path.join(__dirname, "/view/html/index.html"));
-    res.sendFile(path.join(__dirname, "/view/html/index_jq.html"));
+    res.sendFile(path.join(__dirname, "/view/html/index_nothing.html"));
 });
 
 app.listen(port, ()=>{
