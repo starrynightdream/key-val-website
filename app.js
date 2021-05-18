@@ -7,6 +7,9 @@ const session = require('express-session');
 const app = express();
 const port = 3000;
 
+const useList = ['', '_jq', '_nothing'];
+const useIdx = 1;
+
 const User = {
     'admin':'pass'
 }
@@ -111,7 +114,7 @@ app.post('/addkv', (req, res) =>{
  */
 app.use('/lar', (req, res) =>{
     res.sendFile(
-        path.join(__dirname, "/view/html/login_regist_nothing.html")
+        path.join(__dirname, `/view/html/login_regist${ useList[ useIdx]}.html`)
     );
 });
 
@@ -121,7 +124,7 @@ app.use('/lar', (req, res) =>{
  */
 app.use('/sas', (req, res) =>{
     res.sendFile(
-        path.join(__dirname, "/view/html/search_set_nothing.html")
+        path.join(__dirname, `/view/html/search_set${ useList[ useIdx]}.html`)
     );
 });
 
@@ -135,7 +138,7 @@ app.get('/favicon.ico', (req, res) =>{
  */
 app.get('/', (req, res) =>{
     // res.sendFile(path.join(__dirname, "/view/html/index.html"));
-    res.sendFile(path.join(__dirname, "/view/html/index_nothing.html"));
+    res.sendFile(path.join(__dirname, `/view/html/index${ useList[ useIdx]}.html`));
 });
 
 app.listen(port, ()=>{
