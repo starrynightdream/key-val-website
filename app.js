@@ -4,6 +4,8 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 
+const myUtil = require('./util');
+
 const app = express();
 const port = 3000;
 
@@ -143,4 +145,6 @@ app.get('/', (req, res) =>{
 
 app.listen(port, ()=>{
     console.log('now run at port' + port);
+    let a = myUtil.getAllIpAddress();
+    console.log(a);
 });
