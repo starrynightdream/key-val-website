@@ -21,7 +21,6 @@ function regist() {
     }
     errMess.innerHTML = "";
 
-    const that = this;
     $.post('/regist', {
         'id': id.val(),
         'pass': pass.val()

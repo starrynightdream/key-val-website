@@ -9,7 +9,7 @@ function toLogin() {
 }
 
 $(function() {
-    const that = this;
+
     $.post('/user', 
     {},
     function (data){
